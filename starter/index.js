@@ -86,3 +86,76 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+console.log("Financial Analysis")
+    console.log("-------------------------")
+    
+
+        
+      let totalMonths = finances.length;       
+    
+      console.log("Total months: " + totalMonths);        
+    
+  
+       
+      let netTotalProfitLoss = 0;    
+    
+      for (let i = 0; i < totalMonths; i++) {
+    
+          netTotalProfitLoss += finances[i][1];
+      }
+    
+      console.log("The Net Total Profit/Loss: " + netTotalProfitLoss);
+    
+   
+              
+      let dateReversed = [];
+    
+      let amountReversed = [];
+    
+   
+      for (let i = totalMonths - 1; i >= 0; i--) {
+            const[date, amount] = finances[i];        
+
+            dateReversed.push(date)           
+            amountReversed.push(amount);     
+    
+          }
+    
+      let avgChanges =[]            
+    
+      let totalAvgChanges = 0     
+    
+    
+      for (let i = 0; i < totalMonths - 1; i++) {
+    
+        avgChanges.push(amountReversed[i] - amountReversed[i+1]);    
+        totalAvgChanges += avgChanges[i];       
+      }
+    
+      // Confirm that the array was populated
+      // console.log(avgChanges);
+    
+      let totalAvgProfitLoss = totalAvgChanges / avgChanges.length;         //Create a variable for the total average profit/loss using the calculations
+    
+      console.log("Average change: " + totalAvgProfitLoss.toFixed(2));        // Display the total average of profit/loss changes to 2 decimal points
+    
+    
+      let greatestProfitAmount = Math.max(...avgChanges);       // Create a variable and use math.max to find the highest value from the avgChanges array
+    
+      // Retrieve the index of the highest change value 
+      // console.log("The greatest increase in profits is at index " + avgChanges.indexOf(greatestProfitAmount));
+    
+      let greatestProfitDate = dateReversed[60];        //Create a variable and retrieve the date at the same index from the dateReversed
+    
+      console.log("Greatest increase in profits: " + greatestProfitDate + " ($"+ greatestProfitAmount + ")")        // Display the greatest increase in profits over the time period
+      
+
+      let greatestLossAmount = Math.min(...avgChanges);       // Create a variable and use math.min to find the lowest change value
+    
+      // Retrieve the index of the lowest change value
+      // console.log("The greatest decrease in losses is at index " +avgChanges.indexOf(greatestLossAmount));
+      
+      greatestLossDate = dateReversed[41];         //Create a variable and retrieve the date at the same index from the dateReversed array
+    
+      console.log("Greatest Decrease Profits: " + greatestLossDate + " ($" + greatestLossAmount + ")" )         // Display the greatest decrease in losses over the time period
